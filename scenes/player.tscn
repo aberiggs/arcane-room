@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://cg3v6cleggyll"]
+
+[ext_resource type="Texture2D" uid="uid://dr71p4v2frv44" path="res://assets/frames/wizzard_m_idle_anim_f0.png" id="1_hqtel"]
+[ext_resource type="Script" uid="uid://oytird4k2muu" path="res://scripts/player.gd" id="1_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://c3dolk3w03u2n" path="res://assets/frames/wizzard_m_idle_anim_f1.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://cd1jaifdpwfhc" path="res://assets/frames/wizzard_m_idle_anim_f2.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://cd74umwdl2dvg" path="res://assets/frames/wizzard_m_idle_anim_f3.png" id="4_1jxqw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw050"]
+atlas = ExtResource("1_hqtel")
+region = Rect2(0, 0, 16, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b26j0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw050")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7ghd"]
+size = Vector2(15, 20)
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_qlg0r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -14)
+sprite_frames = SubResource("SpriteFrames_b26j0")
+autoplay = "default"
+frame_progress = 0.268459
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_n7ghd")
