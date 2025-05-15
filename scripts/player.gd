@@ -18,10 +18,9 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var horiz_direction = Input.get_axis("ui_left", "ui_right")
 	var vert_directon = Input.get_axis("ui_up", "ui_down")
-	var moving = false
 	if horiz_direction:
 		velocity.x = horiz_direction * SPEED
-		moving = true
+		$AnimatedSprite2D.flip_h = velocity.x < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
