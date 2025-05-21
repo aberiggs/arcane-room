@@ -1,32 +1,43 @@
 extends CharacterBody2D
 
+@export var fireball_scene: PackedScene
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
+func _process(_delta):
+	if Input.is_action_just_pressed("shoot"):
+		shoot_fireball()
 
-func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	#if not is_on_floor():
-	#	velocity += get_gravity() * delta
-
-	# Handle jump.
-	# if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-	#	velocity.y = JUMP_VELOCITY
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var horiz_direction = Input.get_axis("ui_left", "ui_right")
-	var vert_directon = Input.get_axis("ui_up", "ui_down")
-	if horiz_direction:
-		velocity.x = horiz_direction * SPEED
-		$AnimatedSprite2D.flip_h = velocity.x < 0
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	if vert_directon:
-		velocity.y = vert_directon * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+func _physics_process(_delta: float) -> void:
+	var horiz_direction = Input.get_axis("move_left", "move_right")
+	var vert_direction = Input.get_axis("move_up", "move_down")
+	if horiz_direction and vert_direction:
 		
+		velocity.x = horiz_direction * sqrt((SPEED**2)/2)
+		velocity.y = vert_direction * sqrt((SPEED**2)/2)
+	elif horiz_direction:
+		velocity.x = horiz_direction * SPEED
+		velocity.y = move_toward(velocity.y, 0, SPEED)
+	elif vert_direction:
+		velocity.y = vert_direction * SPEED
+	
+	if not horiz_direction:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	else:
+		# Flip the sprite as needed
+		$AnimatedSprite2D.flip_h = velocity.x < 0
+	
+	if not vert_direction:
+		velocity.y = move_toward(velocity.y, 0, SPEED)
+	
 	move_and_slide()
+	
+func shoot_fireball():
+	var fireball = fireball_scene.instantiate()
+	var mouse_pos = get_global_mouse_position()
+	var direction = (mouse_pos - global_position).normalized()
+	
+	fireball.global_position = global_position
+	fireball.direction = direction
+	get_tree().current_scene.add_child(fireball)

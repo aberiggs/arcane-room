@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://cg3v6cleggyll"]
+[gd_scene load_steps=10 format=3 uid="uid://cg3v6cleggyll"]
 
 [ext_resource type="Texture2D" uid="uid://dr71p4v2frv44" path="res://assets/frames/wizzard_m_idle_anim_f0.png" id="1_hqtel"]
 [ext_resource type="Script" uid="uid://oytird4k2muu" path="res://scripts/player.gd" id="1_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://c3dolk3w03u2n" path="res://assets/frames/wizzard_m_idle_anim_f1.png" id="2_sweqy"]
+[ext_resource type="PackedScene" uid="uid://7mv5tnw0by5a" path="res://scenes/fireball.tscn" id="2_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://cd1jaifdpwfhc" path="res://assets/frames/wizzard_m_idle_anim_f2.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://cd74umwdl2dvg" path="res://assets/frames/wizzard_m_idle_anim_f3.png" id="4_1jxqw"]
 
@@ -35,6 +36,7 @@ size = Vector2(14, 4)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qlg0r")
+fireball_scene = ExtResource("2_tuyoq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
