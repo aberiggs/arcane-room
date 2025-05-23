@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://bav1g2c64hx0r"]
+
+[ext_resource type="Script" uid="uid://b2bfx731jkiu6" path="res://scripts/goblin.gd" id="1_76chb"]
+[ext_resource type="Texture2D" uid="uid://xglde86n4sgf" path="res://assets/frames/goblin_idle_anim_f1.png" id="1_q3g0h"]
+[ext_resource type="Texture2D" uid="uid://cr20pkv1jv8eh" path="res://assets/frames/goblin_idle_anim_f2.png" id="2_76chb"]
+[ext_resource type="Texture2D" uid="uid://dsyyq20ofpy7g" path="res://assets/frames/goblin_idle_anim_f3.png" id="3_g1p1y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkl8q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_q3g0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_76chb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g1p1y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3g0h"]
+size = Vector2(10, 9)
+
+[node name="Goblin" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+script = ExtResource("1_76chb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_lkl8q")
+frame_progress = 0.281555
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -4.5)
+shape = SubResource("RectangleShape2D_q3g0h")

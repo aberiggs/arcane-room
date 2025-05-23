@@ -1,9 +1,16 @@
 extends CharacterBody2D
 
 @export var fireball_scene: PackedScene
+@export var health = 50
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
+
+func take_damage(amount: int) -> void:	
+	health -= amount
+	if health <= 0:
+		# The player died...
+		get_tree().reload_current_scene()
 
 func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):

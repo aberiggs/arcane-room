@@ -16,5 +16,9 @@ func _on_timer_timeout():
 	
 func _on_body_entered(body):
 	# TODO: Check for enemies or walls here
+	if body.is_in_group("enemy"):
+		if body.has_method("take_damage"):
+			body.take_damage(10)
+	
 	if body.name != "Player":
 		queue_free()

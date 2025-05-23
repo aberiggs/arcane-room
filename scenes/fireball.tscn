@@ -6,6 +6,7 @@
 radius = 2.0
 
 [node name="Fireball" type="Area2D"]
+collision_mask = 5
 script = ExtResource("1_3s14c")
 speed = 300.0
 

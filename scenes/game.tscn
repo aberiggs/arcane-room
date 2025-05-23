@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=4 uid="uid://cap68whbwpi6u"]
+[gd_scene load_steps=4 format=4 uid="uid://cap68whbwpi6u"]
 
 [ext_resource type="TileSet" uid="uid://c0vs17vj11gm7" path="res://assets/main_tiles.tres" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://cg3v6cleggyll" path="res://scenes/player.tscn" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://bav1g2c64hx0r" path="res://scenes/goblin.tscn" id="3_lnu2h"]
 
 [node name="Game" type="Node2D"]
 
@@ -23,3 +24,6 @@ zoom = Vector2(3, 3)
 top_level = true
 tile_map_data = PackedByteArray("AAAJAP//AwAAAAAAAAAAAP//BAAAAAAAAAABAP//AAACAAAAAAACAP//AAACAAAAAAADAP//AAACAAAAAAAEAP//AAACAAAAAAAFAP//AAACAAAAAAAGAP//AAACAAAAAAAHAP//AAACAAAAAAAIAP//AAACAAAAAAABAAAAAAACAAEAAAACAAAAAAACAAEAAAADAAAAAAACAAEAAAAEAAAAAAACAAEAAAAFAAAAAAACAAEAAAAGAAAAAAACAAEAAAAHAAAAAAACAAEAAAAIAAAAAAACAAEAAAAAAAAAAAABAAEAAAAJAAAAAAADAAEAAAACAPv/AAAGAAUAAAAHAPv/AAAGAAUAAAAHAPj/AAAGAAUAAAACAPj/AAAGAAUAAAA=")
 tile_set = ExtResource("1_yqjtg")
+
+[node name="Goblin" parent="." instance=ExtResource("3_lnu2h")]
+position = Vector2(21, -8)
