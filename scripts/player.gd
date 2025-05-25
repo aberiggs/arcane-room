@@ -1,16 +1,16 @@
 extends CharacterBody2D
 
 @export var fireball_scene: PackedScene
-@export var health = 50
+@export var max_health = 50
+
+var health = 50
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -400.0
 
-func take_damage(amount: int) -> void:	
-	health -= amount
-	if health <= 0:
-		# The player died...
-		get_tree().reload_current_scene()
+func _ready() -> void:
+	var hud = get_node("../UI")
+	hud.ui_ready.connect(_on_ui_ready)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("shoot"):
@@ -48,3 +48,19 @@ func shoot_fireball():
 	fireball.global_position = global_position
 	fireball.direction = direction
 	get_tree().current_scene.add_child(fireball)
+	
+func take_damage(amount: int):
+	health -= amount
+	var ui_node = get_node("../UI")
+	if (ui_node):
+		ui_node.update_health(health, max_health)
+	if health <= 0:
+		# The player died...
+		call_deferred("reload_scene")
+	
+func reload_scene():
+	get_tree().reload_current_scene()
+	
+func _on_ui_ready():
+	# Initialize health bar
+	take_damage(0)
